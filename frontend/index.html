@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Agentic Adaptive RAG - Intelligent retrieval-augmented generation for particle physics and ML research">
+    <title>Agentic Adaptive RAG | Particle Physics & ML Research</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                            <circle cx="16" cy="16" r="14" stroke="url(#grad)" stroke-width="2"/>
+                            <circle cx="16" cy="16" r="6" fill="url(#grad)"/>
+                            <ellipse cx="16" cy="16" rx="14" ry="6" stroke="url(#grad)" stroke-width="1.5" transform="rotate(30 16 16)"/>
+                            <ellipse cx="16" cy="16" rx="14" ry="6" stroke="url(#grad)" stroke-width="1.5" transform="rotate(-30 16 16)"/>
+                            <defs>
+                                <linearGradient id="grad" x1="0" y1="0" x2="32" y2="32">
+                                    <stop offset="0%" stop-color="#6366f1"/>
+                                    <stop offset="100%" stop-color="#22d3ee"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div>
+                        <h1>Agentic Adaptive RAG</h1>
+                        <p class="subtitle">Particle Physics & ML Research Assistant</p>
+                    </div>
+                </div>
+                <div class="header-stats">
+                    <div class="stat" id="stat-docs">
+                        <span class="stat-value">—</span>
+                        <span class="stat-label">Documents</span>
+                    </div>
+                    <div class="stat" id="stat-status">
+                        <span class="stat-value status-dot">●</span>
+                        <span class="stat-label">System</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Query Input -->
+            <div class="query-section">
+                <div class="query-container">
+                    <div class="query-input-wrapper">
+                        <textarea 
+                            id="query-input" 
+                            placeholder="Ask about particle physics, ML techniques, anomaly detection, federated learning..."
+                            rows="2"
+                        ></textarea>
+                        <button id="submit-btn" onclick="submitQuery()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 2L11 13"/><path d="M22 2L15 22L11 13L2 9L22 2Z"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="example-queries">
+                        <span class="example-label">Try:</span>
+                        <button class="example-btn" onclick="setQuery('What is the Higgs boson and how was it discovered?')">Higgs Boson</button>
+                        <button class="example-btn" onclick="setQuery('Compare GNNs vs CNNs for particle jet classification and discuss computational trade-offs')">GNN vs CNN</button>
+                        <button class="example-btn" onclick="setQuery('How is federated learning applied to particle physics experiments?')">Federated Learning</button>
+                        <button class="example-btn" onclick="setQuery('What are the latest quantum computing developments at CERN in 2025?')">Latest News</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Response Area -->
+            <div id="response-area" class="response-area hidden">
+                <!-- Loading State -->
+                <div id="loading" class="loading hidden">
+                    <div class="loading-spinner"></div>
+                    <div class="loading-text">Agent is thinking...</div>
+                    <div class="loading-steps" id="loading-steps"></div>
+                </div>
+
+                <!-- Result -->
+                <div id="result" class="result hidden">
+                    <!-- Agent Path Visualization -->
+                    <div class="agent-path" id="agent-path">
+                        <h3 class="section-title">🔀 Agent Decision Path</h3>
+                        <div class="path-steps" id="path-steps"></div>
+                    </div>
+
+                    <!-- Answer -->
+                    <div class="answer-card">
+                        <div class="answer-header">
+                            <h3 class="section-title">💡 Answer</h3>
+                            <div class="answer-meta" id="answer-meta"></div>
+                        </div>
+                        <div class="answer-content" id="answer-content"></div>
+                    </div>
+
+                    <!-- Metrics -->
+                    <div class="metrics-bar" id="metrics-bar">
+                        <div class="metric">
+                            <span class="metric-label">Strategy</span>
+                            <span class="metric-value" id="m-strategy">—</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Grounded</span>
+                            <span class="metric-value" id="m-grounded">—</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Relevance</span>
+                            <span class="metric-value" id="m-relevance">—</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Retries</span>
+                            <span class="metric-value" id="m-retries">—</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Time</span>
+                            <span class="metric-value" id="m-time">—</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Built with LangGraph • ChromaDB • OpenRouter • FastAPI</p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
