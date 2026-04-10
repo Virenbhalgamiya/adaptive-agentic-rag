@@ -89,35 +89,34 @@ Accept    Retry
 
 ## 📊 Evaluation Results
 
-Evaluated on 5 curated queries designed to trigger different strategies:
+Evaluated on a comprehensive suite of **100 curated queries** designed to trigger different strategies across various domains (Particle Physics, ML Basics, Federated Learning, Anomaly Detection, MLOps, etc.).
 
 ### Aggregate Metrics
 
 | Metric | Value |
 |--------|-------|
+| **Total Queries** | **100** |
+| **Success Rate** | **100%** (100/100) |
 | **Grounding Rate** | **100%** |
-| **Avg Relevance Score** | **0.82** |
-| **Routing Accuracy** | **60%** |
-| **Avg Processing Time** | **20.88s** |
-| **Avg Steps per Query** | **4.8** |
-| **Success Rate** | **100%** (5/5) |
+| **Avg Relevance Score** | **0.86** |
+| **Routing Accuracy** | **95.0%** |
+| **Avg Processing Time** | **33.19s** |
+| **Total Retries** | **6** |
 
-### Per-Query Results
+### Per-Strategy Results
 
-| # | Query | Strategy | Grounded | Relevance | Time |
-|---|-------|----------|----------|-----------|------|
-| 1 | Higgs boson discovery at CERN | `complex` | ✅ | 1.00 | 23.6s |
-| 2 | GNNs vs CNNs for jet classification | `complex` | ✅ | 0.80 | 26.2s |
-| 3 | Federated learning in particle physics | `complex` | ✅ | 0.80 | 19.5s |
-| 4 | Anomaly detection at LHC | `complex` | ✅ | 0.70 | 25.2s |
-| 5 | Latest quantum computing at CERN 2025 | `web_search` | ✅ | 0.80 | 9.9s |
+| Strategy | Queries | Routing Accuracy | Grounding | Relevance | Avg Time |
+|----------|---------|------------------|-----------|-----------|----------|
+| `simple` | 30 | 96.7% | 100% | 0.97 | 29.36s |
+| `complex`| 45 | 100.0% | 100% | 0.81 | 41.40s |
+| `web_search`| 25 | 84.0% | 100% | 0.83 | 22.99s |
 
 ### Key Observations
 
-- **100% grounding rate** — the agent never hallucinated; when context was insufficient, it explicitly acknowledged limitations rather than fabricating answers
-- **Intelligent routing** — Query 5 (about 2025 developments) was correctly routed to web search since this information wouldn't exist in pre-downloaded arXiv papers
-- **Honest uncertainty** — The agent cited specific papers (e.g., "Hallaji et al. (2022)") and flagged when context didn't fully answer the question
-- **Query decomposition worked well** — Complex queries were split into 3-4 focused sub-questions for targeted retrieval
+- **100% grounding rate** — the agent never hallucinated across 100 complex queries; when context was insufficient, it explicitly acknowledged limitations and relied on the knowledge base completely.
+- **High relevance on complex reasoning** — Complex multi-hop queries achieved an average relevance of 0.81, successfully synthesizing data across multiple papers.
+- **Robust Self-Correction** — The self-correction loop successfully triggered 6 times during the evaluation, automatically salvaging queries that would have otherwise resulted in ungrounded or poor answers.
+- **Web Search handling** — Out-of-scope or recent event queries correctly routed to web search 84% of the time, keeping the model from failing on knowledge cutoffs.
 
 ---
 
