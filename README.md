@@ -5,7 +5,8 @@
 <h1 align="center">🔬 Agentic Adaptive RAG</h1>
 
 <p align="center">
-  <strong>An intelligent Retrieval-Augmented Generation system with adaptive retrieval strategies, self-correction, and multi-hop reasoning for particle physics & ML research.</strong>
+  <strong>An intelligent Retrieval-Augmented Generation system with adaptive retrieval strategies, self-correction, and multi-hop reasoning for particle physics & ML research.</strong><br><br>
+  <em>In collaboration with <a href="https://github.com/Hiral373">@Hiral373</a></em>
 </p>
 
 <p align="center">
